@@ -77,6 +77,9 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   const Icon = project.icon;
 
   useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -86,21 +89,17 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       { threshold: 0.2 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(element);
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
+      observer.unobserve(element);
+      observer.disconnect();
     };
   }, []);
 
   return (
-    <Link
+    <div
       ref={ref}
-      href={`/portfolio`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={`group block bg-white/70 dark:bg-gradient-to-br dark:from-[#1a2332]/90 dark:to-[#0f1419]/90 rounded-xl overflow-hidden border border-amber-200/50 dark:border-cyan-500/20 hover:border-blue-400 dark:hover:border-cyan-400 hover:shadow-2xl hover:shadow-blue-100 dark:hover:shadow-cyan-500/20 transition-all duration-500 backdrop-blur-sm relative ${
@@ -110,6 +109,10 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         animationDelay: `${index * 100}ms`,
         transform: isHovered ? "translateY(-12px) scale(1.02)" : "translateY(0) scale(1)",
       }}
+    >
+    <Link
+      href={`/portfolio`}
+      className="block"
     >
       {/* 背景光效 */}
       <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-2xl`}></div>
@@ -185,6 +188,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         </div>
       </div>
     </Link>
+    </div>
   );
 }
 

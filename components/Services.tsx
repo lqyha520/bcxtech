@@ -38,6 +38,9 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -47,14 +50,11 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       { threshold: 0.2 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(element);
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
+      observer.unobserve(element);
+      observer.disconnect();
     };
   }, []);
 
