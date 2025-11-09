@@ -1,0 +1,38 @@
+{
+  "name": "布草芯科技 - 专业的企业软件开发服务商",
+  "short_name": "布草芯",
+  "description": "布草芯科技专注于软件开发、小程序定制、ERP系统解决方案，为企业提供全方位的数字化服务",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FEF9C3",
+  "theme_color": "#0066FF",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
+

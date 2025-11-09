@@ -1,0 +1,67 @@
+# 静态资源目录
+
+此目录包含网站的静态资源文件。
+
+## 必需的图片文件
+
+### 1. Favicon 图标
+- `favicon.ico` - 传统的 favicon 文件（16x16, 32x32, 48x48 像素）
+- `favicon.svg` - SVG 格式的 favicon（已创建，现代浏览器优先使用）
+
+### 2. Apple Touch Icon
+- `apple-touch-icon.png` - Apple 设备图标（180x180 像素）
+  - 可以从 `icon.svg` 转换生成
+
+### 3. OpenGraph 图片
+- `og-image.jpg` 或 `og-image.png` - 社交媒体分享图片（1200x630 像素）
+  - 已创建 `og-image.svg` 作为占位符
+  - 建议使用 JPG 或 PNG 格式以获得更好的兼容性
+
+### 4. Logo
+- `logo.png` - 公司 Logo（建议 512x512 或更大）
+  - 已创建 `logo.svg` 作为占位符
+
+## 生成图片的方法
+
+### 方法一：使用在线工具
+1. 访问 https://realfavicongenerator.net/ 生成 favicon
+2. 访问 https://www.favicon-generator.org/ 生成各种尺寸的图标
+3. 使用设计工具（如 Figma、Photoshop）创建 og-image
+
+### 方法二：从 SVG 转换
+可以使用以下工具将 SVG 转换为 PNG/JPG：
+- ImageMagick: `convert icon.svg -resize 180x180 apple-touch-icon.png`
+- Inkscape: `inkscape icon.svg --export-filename=apple-touch-icon.png -w 180 -h 180`
+- 在线工具: https://convertio.co/svg-png/
+
+### 方法三：使用 Next.js Image API
+如果需要，可以在代码中动态生成图片。
+
+## 图片优化建议
+
+1. **Favicon**: 使用 SVG 格式以获得最佳兼容性
+2. **OG Image**: 使用 JPG 格式（文件更小）或 PNG 格式（支持透明）
+3. **Apple Touch Icon**: 使用 PNG 格式，180x180 像素
+4. **Logo**: 使用 SVG 或高分辨率 PNG
+
+## 当前状态
+
+✅ 已创建：
+- `favicon.svg` - SVG favicon
+- `icon.svg` - 通用图标（可用于 Apple Touch Icon）
+- `og-image.svg` - OpenGraph 图片占位符
+- `logo.svg` - Logo 占位符
+
+❌ 待创建：
+- `favicon.ico` - 传统 favicon（可选，建议创建以兼容旧浏览器）
+- `apple-touch-icon.png` - Apple 设备图标（建议从 icon.svg 转换）
+- `og-image.jpg` 或 `og-image.png` - OpenGraph 图片（建议从 og-image.svg 转换或重新设计）
+- `logo.png` - Logo PNG 版本（可选）
+
+## 注意事项
+
+1. 所有图片文件应该放在 `public` 目录下
+2. 文件名必须与 `app/layout.tsx` 中的配置一致
+3. 确保图片文件大小合理（favicon < 50KB, og-image < 500KB）
+4. 定期检查图片是否正常显示
+
