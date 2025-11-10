@@ -152,7 +152,7 @@ export default function ServicesPage() {
               {/* 顶部内容区 - 移动端优化，PC端保持原样 */}
               <div className="space-y-1.5 md:space-y-1 w-full mb-2 md:mb-2">
                 {/* 主标题 - 移动端优化换行和间距，PC端保持原样 */}
-                <h1 className="text-xl md:text-2xl lg:text-3xl font-black text-gray-900 dark:text-white leading-tight tracking-tight animate-slide-in-left">
+                <h1 className="text-xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white leading-tight tracking-tight animate-slide-in-left">
                   {/* 移动端：紧凑布局 */}
                   <div className="md:hidden flex flex-col items-center gap-0.5">
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 dark:from-cyan-400 dark:via-blue-400 dark:to-cyan-400">

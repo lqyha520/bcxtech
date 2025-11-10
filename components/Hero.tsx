@@ -153,7 +153,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative pt-16 md:pt-16 min-h-screen flex flex-col justify-center overflow-hidden bg-yellow-50 dark:bg-gradient-to-b dark:from-[#0f1419] dark:via-[#1a2332] dark:to-[#0f1419]">
+    <section className="relative pt-16 md:pt-16 min-h-screen flex flex-col justify-start md:justify-center overflow-hidden bg-yellow-50 dark:bg-gradient-to-b dark:from-[#0f1419] dark:via-[#1a2332] dark:to-[#0f1419]">
       {/* 装饰背景 */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-blue-500/10 to-cyan-500/10 dark:from-cyan-500/10 dark:to-blue-500/10 rounded-full blur-3xl animate-pulse-ring"></div>
@@ -161,7 +161,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(161,161,170,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(161,161,170,0.15)_1px,transparent_1px)] bg-[size:24px_24px] dark:opacity-20"></div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 w-full flex-1 flex flex-col justify-center py-3 md:py-2">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 w-full flex-1 flex flex-col justify-start md:justify-center py-4 md:py-2">
         <div className="max-w-4xl mx-auto w-full">
           {/* 主标题 - 移动端优化 */}
           <div className="text-center mb-2 md:mb-4">
@@ -170,7 +170,7 @@ export default function Hero() {
               <div className="hidden lg:block absolute -left-8 top-1/2 -translate-y-1/2 w-6 h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-blue-500 dark:via-cyan-400 dark:to-cyan-400"></div>
               <div className="hidden lg:block absolute -right-8 top-1/2 -translate-y-1/2 w-6 h-0.5 bg-gradient-to-l from-transparent via-cyan-500 to-cyan-500 dark:via-blue-400 dark:to-blue-400"></div>
               
-              <h1 className="text-2xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight md:leading-none tracking-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight md:leading-none tracking-tight">
                 <span className="inline-block text-gray-900 dark:text-white mr-2 sm:mr-2.5 md:mr-3 animate-fade-in relative">
                   布草芯
                   <span className="hidden sm:inline absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-500 dark:bg-cyan-400 rounded-full animate-pulse"></span>

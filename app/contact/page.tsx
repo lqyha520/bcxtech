@@ -135,7 +135,7 @@ export default function ContactPage() {
           <div className="max-w-7xl mx-auto w-full">
             {/* 顶部：标题和描述 - 移动端优化字体大小，PC端保持原样 */}
             <div className="text-center mb-4 md:mb-2 animate-fade-in">
-              <h1 className="text-xl md:text-3xl lg:text-3xl font-black text-gray-900 dark:text-white mb-2 md:mb-0.5 leading-tight tracking-tight animate-slide-up">
+              <h1 className="text-xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-2 md:mb-0.5 leading-tight tracking-tight animate-slide-up">
                 <span className="whitespace-nowrap">联系我们</span><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600 dark:from-cyan-400 dark:via-blue-400 dark:to-indigo-400 whitespace-nowrap"> · 开启合作</span>
               </h1>
               <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-semibold animate-slide-up" style={{ animationDelay: '0.1s' }}>

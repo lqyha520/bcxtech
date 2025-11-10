@@ -97,9 +97,8 @@ export default function AboutPage() {
             {/* 顶部：标题和公司简介 - 移动端优化字体大小和间距，PC端保持原样 */}
             <div className="text-center mb-3 md:mb-2 animate-fade-in">
               <h1 className="text-xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-2 md:mb-1 leading-tight tracking-tight animate-slide-up">
-                <span className="md:whitespace-nowrap">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600 dark:from-cyan-400 dark:via-blue-400 dark:to-indigo-400">创新</span>驱动<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 dark:from-purple-400 dark:via-pink-400 dark:to-red-400">未来</span> · <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 dark:from-orange-400 dark:via-red-400 dark:to-pink-400">科技</span>成就<span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-emerald-500 to-teal-600 dark:from-green-400 dark:via-emerald-400 dark:to-teal-400">梦想</span>
-                </span>
+                <span className="whitespace-nowrap">关于</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600 dark:from-cyan-400 dark:via-blue-400 dark:to-indigo-400 whitespace-nowrap">布草芯科技</span>
               </h1>
               <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-1 md:mb-0.5 font-semibold animate-slide-up px-2 md:px-0" style={{ animationDelay: '0.1s' }}>
                 成立于2019年 · 专注企业数字化转型 · 500+企业信赖
