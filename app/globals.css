@@ -394,3 +394,52 @@ html {
 .dark * {
   scrollbar-color: rgb(37 99 235 / 0.4) transparent;
 }
+
+/* 移动端优化 - 仅在移动端生效，不影响PC端 */
+@media (max-width: 767px) {
+  /* 防止横向滚动 */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  
+  /* 输入框字体大小 - 防止iOS自动缩放 */
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="password"],
+  textarea {
+    font-size: 16px !important;
+  }
+  
+  /* 优化触摸反馈 */
+  button,
+  a {
+    -webkit-tap-highlight-color: rgba(59, 130, 246, 0.2);
+  }
+  
+  /* 优化滚动性能 */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* 优化字体渲染 */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* 禁用按钮文本选择 */
+  button {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* 图片优化 */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

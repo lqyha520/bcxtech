@@ -155,10 +155,10 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - 移动端优化触摸目标 */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-400 focus:ring-offset-2"
+            className="md:hidden p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-400 focus:ring-offset-2 min-w-[44px] min-h-[44px] flex items-center justify-center active:scale-95"
             aria-label={isMobileMenuOpen ? "关闭菜单" : "打开菜单"}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
@@ -185,7 +185,7 @@ export default function Header() {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "px-4 py-2 text-sm font-semibold rounded-lg transition-all",
+                    "px-4 py-3 text-sm font-semibold rounded-lg transition-all min-h-[44px] flex items-center active:scale-95",
                     isActive(item.href)
                       ? "text-blue-600 dark:text-cyan-400 bg-blue-50 dark:bg-cyan-900/20"
                       : "text-gray-800 dark:text-gray-100 hover:text-blue-600 dark:hover:text-cyan-400 hover:bg-blue-50 dark:hover:bg-slate-800"
@@ -198,7 +198,7 @@ export default function Header() {
               <div className="pt-2 space-y-2">
                 <button
                   onClick={toggleTheme}
-                  className="w-full px-4 py-2 text-left text-sm font-semibold text-gray-800 dark:text-gray-100 hover:bg-blue-50 dark:hover:bg-slate-800 rounded-lg transition-colors flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-400 focus:ring-offset-2"
+                  className="w-full px-4 py-3 text-left text-sm font-semibold text-gray-800 dark:text-gray-100 hover:bg-blue-50 dark:hover:bg-slate-800 rounded-lg transition-colors flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-400 focus:ring-offset-2 min-h-[44px] active:scale-95"
                   aria-label={isDark ? "切换到亮色模式" : "切换到暗色模式"}
                   aria-pressed={isDark}
                   role="menuitem"
@@ -217,7 +217,7 @@ export default function Header() {
                 </button>
                 <Link
                   href="/contact"
-                  className="block mx-4 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white text-sm font-semibold rounded-lg transition-all text-center shadow-sm"
+                  className="block mx-4 px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white text-sm font-semibold rounded-lg transition-all text-center shadow-sm min-h-[44px] flex items-center justify-center active:scale-95"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   立即咨询

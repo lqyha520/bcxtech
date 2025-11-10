@@ -184,8 +184,8 @@ export default function PortfolioPage() {
     <main className="min-h-screen bg-yellow-50 dark:bg-gradient-to-b dark:from-[#0f1419] dark:to-[#1a2332]">
       <Header />
       
-      {/* Hero Section - 上下布局 */}
-      <section className="relative pt-16 md:pt-20 h-screen flex flex-col overflow-hidden bg-yellow-50 dark:bg-gradient-to-b dark:from-[#0f1419] dark:via-[#1a2332] dark:to-[#0f1419]">
+      {/* Hero Section - 上下布局 - 移动端优化 */}
+      <section className="relative pt-16 md:pt-20 min-h-screen md:h-screen flex flex-col overflow-y-auto md:overflow-hidden bg-yellow-50 dark:bg-gradient-to-b dark:from-[#0f1419] dark:via-[#1a2332] dark:to-[#0f1419]">
         {/* 动态背景装饰 */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* 大型渐变球体 */}
@@ -196,23 +196,25 @@ export default function PortfolioPage() {
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(161,161,170,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(161,161,170,0.15)_1px,transparent_1px)] bg-[size:24px_24px] dark:opacity-20"></div>
         </div>
         
-        <div className="container mx-auto px-4 py-1 relative z-10 w-full h-full flex flex-col justify-start overflow-hidden">
+        <div className="container mx-auto px-4 py-3 md:py-1 relative z-10 w-full flex-1 flex flex-col justify-center md:justify-start">
           <div className="max-w-7xl mx-auto w-full">
-            {/* 顶部：标题区域 */}
-            <div className="text-center mb-2 md:mb-3 animate-fade-in">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-1.5 leading-tight tracking-tight animate-slide-up md:whitespace-nowrap">
-                用<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600 dark:from-cyan-400 dark:via-blue-400 dark:to-indigo-400">技术</span>创造<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 dark:from-purple-400 dark:via-pink-400 dark:to-red-400">价值</span>
+            {/* 顶部：标题区域 - 移动端优化字体大小和间距，PC端保持原样 */}
+            <div className="text-center mb-3 md:mb-3 animate-fade-in">
+              <h1 className="text-xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-2 md:mb-1.5 leading-tight tracking-tight animate-slide-up">
+                <span className="md:whitespace-nowrap">
+                  用<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600 dark:from-cyan-400 dark:via-blue-400 dark:to-indigo-400">技术</span>创造<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 dark:from-purple-400 dark:via-pink-400 dark:to-red-400">价值</span>
+                </span>
               </h1>
-              <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300 mb-0.5 font-semibold animate-slide-up" style={{ animationDelay: '0.1s' }}>
+              <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300 mb-1 md:mb-0.5 font-semibold animate-slide-up px-2 md:px-0" style={{ animationDelay: '0.1s' }}>
                 500+ 企业信赖 · 1000+ 成功案例 · 98% 客户满意度
               </p>
-              <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+              <p className="text-xs md:text-xs text-gray-500 dark:text-gray-400 animate-slide-up px-2 md:px-0" style={{ animationDelay: '0.2s' }}>
                 为各行业企业提供专业的数字化解决方案
               </p>
             </div>
             
-            {/* 中间：统计卡片 */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-2.5 mb-2 md:mb-3 max-w-4xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            {/* 中间：统计卡片 - 移动端优化 */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 md:gap-2.5 mb-4 md:mb-3 max-w-4xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
               {[
                 { number: "500+", label: "服务客户", color: "from-blue-600 to-cyan-500" },
                 { number: "1000+", label: "成功案例", color: "from-purple-600 to-pink-500" },
@@ -220,17 +222,17 @@ export default function PortfolioPage() {
                 { number: "50+", label: "行业覆盖", color: "from-green-600 to-emerald-500" },
               ].map((stat, i) => (
                 <div key={i} className="group relative">
-                  <div className={`px-2 py-1.5 md:px-3 md:py-2 bg-gradient-to-r ${stat.color} rounded-lg text-white font-black shadow-lg hover:scale-105 transition-transform cursor-default flex flex-col justify-center items-center text-center`}>
-                    <div className="text-base md:text-lg lg:text-xl mb-0.5">{stat.number}</div>
-                    <div className="text-[10px] md:text-xs opacity-90">{stat.label}</div>
+                  <div className={`px-2.5 py-2 md:px-3 md:py-2 bg-gradient-to-r ${stat.color} rounded-lg text-white font-black shadow-lg hover:scale-105 transition-transform cursor-default flex flex-col justify-center items-center text-center min-h-[70px] md:min-h-0`}>
+                    <div className="text-lg md:text-lg lg:text-xl mb-1 md:mb-0.5">{stat.number}</div>
+                    <div className="text-xs md:text-xs opacity-90">{stat.label}</div>
                   </div>
                   <div className={`absolute inset-0 bg-gradient-to-r ${stat.color} rounded-lg blur-xl opacity-50 group-hover:opacity-75 transition-opacity -z-10`}></div>
                 </div>
               ))}
             </div>
             
-            {/* 底部：精选案例预览 */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 md:gap-2.5 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            {/* 底部：精选案例预览 - 移动端优化 */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-2.5 animate-fade-in mb-4 md:mb-0" style={{ animationDelay: '0.4s' }}>
               {featuredProjects.slice(0, 3).map((project, index) => (
                 <div
                   key={project.id}
@@ -239,8 +241,8 @@ export default function PortfolioPage() {
                     document.getElementById('featured-projects')?.scrollIntoView({ behavior: 'smooth' });
                   }}
                 >
-                  {/* 图片区域 */}
-                  <div className="relative h-16 md:h-20 flex-shrink-0 overflow-hidden">
+                  {/* 图片区域 - 移动端优化高度 */}
+                  <div className="relative h-24 md:h-20 flex-shrink-0 overflow-hidden">
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 dark:opacity-10`}></div>
                     <Image
                       src={project.image}
@@ -251,52 +253,52 @@ export default function PortfolioPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                     
-                    {/* 年份标签 */}
-                    <div className="absolute top-1.5 left-1.5">
-                      <span className={`px-1.5 py-0.5 bg-gradient-to-r ${project.color} text-white text-[10px] md:text-xs font-bold rounded-full shadow-lg`}>
+                    {/* 年份标签 - 移动端优化大小 */}
+                    <div className="absolute top-2 left-2 md:top-1.5 md:left-1.5">
+                      <span className={`px-2 py-1 md:px-1.5 md:py-0.5 bg-gradient-to-r ${project.color} text-white text-xs md:text-xs font-bold rounded-full shadow-lg`}>
                         {project.year}
                       </span>
                     </div>
                     
-                    {/* 精选徽章 */}
-                    <div className="absolute top-1.5 right-1.5 px-1.5 py-0.5 bg-yellow-500 text-white text-[10px] md:text-xs font-bold rounded-full flex items-center gap-0.5 shadow-lg">
-                      <Star className="w-2.5 h-2.5 fill-current" />
+                    {/* 精选徽章 - 移动端优化大小 */}
+                    <div className="absolute top-2 right-2 md:top-1.5 md:right-1.5 px-2 py-1 md:px-1.5 md:py-0.5 bg-yellow-500 text-white text-xs md:text-xs font-bold rounded-full flex items-center gap-1 md:gap-0.5 shadow-lg">
+                      <Star className="w-3 h-3 md:w-2.5 md:h-2.5 fill-current" />
                       精选
                     </div>
                   </div>
                   
-                  {/* 内容区域 */}
-                  <div className="p-1.5 md:p-2 flex-1 flex flex-col min-h-0">
-                    <h3 className="text-xs md:text-sm font-black text-gray-900 dark:text-white mb-0.5 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors line-clamp-1">
+                  {/* 内容区域 - 移动端优化padding和字体 */}
+                  <div className="p-3 md:p-2 flex-1 flex flex-col min-h-0">
+                    <h3 className="text-sm md:text-sm font-black text-gray-900 dark:text-white mb-1 md:mb-0.5 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors line-clamp-1">
                       {project.title}
                     </h3>
-                    <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 mb-0.5 line-clamp-1">{project.client}</p>
-                    <p className="text-[10px] md:text-xs text-gray-600 dark:text-gray-300 mb-1 line-clamp-2 flex-1">
+                    <p className="text-xs md:text-xs text-gray-500 dark:text-gray-400 mb-1 md:mb-0.5 line-clamp-1">{project.client}</p>
+                    <p className="text-xs md:text-xs text-gray-600 dark:text-gray-300 mb-2 md:mb-1 line-clamp-2 flex-1 leading-relaxed">
                       {project.description}
                     </p>
                     
-                    {/* 关键指标 */}
-                    <div className="flex items-center gap-1.5 md:gap-2 mb-1">
+                    {/* 关键指标 - 移动端优化间距和大小 */}
+                    <div className="flex items-center gap-3 md:gap-2 mb-2 md:mb-1">
                       {project.results.slice(0, 2).map((result, idx) => {
                         const Icon = result.icon;
                         return (
-                          <div key={idx} className="flex items-center gap-0.5">
-                            <div className={`p-0.5 rounded bg-gradient-to-br ${project.color} opacity-20 dark:opacity-10`}>
-                              <Icon className="w-2.5 h-2.5 md:w-3 md:h-3 text-gray-900 dark:text-white" />
+                          <div key={idx} className="flex items-center gap-1.5 md:gap-0.5">
+                            <div className={`p-1.5 md:p-0.5 rounded-lg bg-gradient-to-br ${project.color} shadow-sm`}>
+                              <Icon className="w-4 h-4 md:w-3 md:h-3 text-white" />
                             </div>
                             <div>
-                              <div className="text-[10px] md:text-xs font-black text-gray-900 dark:text-white leading-tight">{result.value}</div>
-                              <div className="text-[9px] md:text-[10px] text-gray-500 dark:text-gray-400 leading-tight">{result.label}</div>
+                              <div className="text-sm md:text-xs font-black text-gray-900 dark:text-white leading-tight">{result.value}</div>
+                              <div className="text-xs md:text-[10px] text-gray-500 dark:text-gray-400 leading-tight">{result.label}</div>
                             </div>
                           </div>
                         );
                       })}
                     </div>
                     
-                    {/* 查看按钮 */}
-                    <div className="flex items-center gap-0.5 text-blue-600 dark:text-cyan-400 text-[10px] md:text-xs font-bold group-hover:gap-1 transition-all">
+                    {/* 查看按钮 - 移动端优化大小 */}
+                    <div className="flex items-center gap-1 text-blue-600 dark:text-cyan-400 text-xs md:text-xs font-bold group-hover:gap-1.5 md:group-hover:gap-1 transition-all min-h-[32px] md:min-h-0">
                       <span>查看详情</span>
-                      <ArrowRight className="w-2.5 h-2.5 md:w-3 md:h-3 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-3 h-3 md:w-3 md:h-3 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
                   
@@ -308,42 +310,93 @@ export default function PortfolioPage() {
           </div>
         </div>
         
-        {/* 滚动提示组件 */}
-        <ScrollHint />
+        {/* 滚动提示组件 - 移动端隐藏，PC端显示 */}
+        <div className="hidden md:block">
+          <ScrollHint />
+        </div>
       </section>
 
-      {/* 分类筛选和全部案例 */}
-      <section id="featured-projects" className="py-12 px-4 bg-yellow-50 dark:bg-gradient-to-b dark:from-[#0f1419] dark:via-[#1a2332] dark:to-[#0f1419] relative">
+      {/* 分类筛选和全部案例 - 移动端优化 */}
+      <section id="featured-projects" className="py-8 md:py-12 px-4 bg-yellow-50 dark:bg-gradient-to-b dark:from-[#0f1419] dark:via-[#1a2332] dark:to-[#0f1419] relative">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(161,161,170,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(161,161,170,0.15)_1px,transparent_1px)] bg-[size:24px_24px] dark:opacity-20"></div>
         </div>
         <div className="container mx-auto max-w-6xl relative z-10">
-          <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-8 text-center">全部案例</h2>
-          <div className="flex flex-wrap gap-3 justify-center mb-12">
-            {categories.map((category) => {
-              const Icon = category.icon;
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`px-6 py-3 rounded-xl font-bold text-sm transition-all flex items-center gap-2 ${
-                    selectedCategory === category.id
-                      ? "bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-cyan-500 dark:to-blue-500 text-white shadow-lg scale-105"
-                      : "bg-white/70 dark:bg-[#1a2332]/70 text-gray-700 dark:text-gray-300 border border-amber-200/50 dark:border-cyan-400/20 hover:scale-105"
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  {category.name}
-                </button>
-              );
-            })}
+          <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-5 md:mb-8 text-center px-2 md:px-0">全部案例</h2>
+          {/* 移动端：全部案例单独一行，其他按钮一行两个；PC端：所有按钮一行显示 */}
+          <div className="mb-6 md:mb-12 px-2 md:px-0">
+            {/* 移动端布局 */}
+            <div className="md:hidden">
+              {/* 全部案例按钮 - 移动端单独一行 */}
+              <div className="flex justify-center mb-3">
+                {categories.slice(0, 1).map((category) => {
+                  const Icon = category.icon;
+                  return (
+                    <button
+                      key={category.id}
+                      onClick={() => setSelectedCategory(category.id)}
+                      className={`px-4 py-2.5 rounded-lg font-bold text-sm transition-all flex items-center gap-2 min-h-[44px] w-full max-w-[200px] active:scale-95 ${
+                        selectedCategory === category.id
+                          ? "bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-cyan-500 dark:to-blue-500 text-white shadow-lg scale-105"
+                          : "bg-white/70 dark:bg-[#1a2332]/70 text-gray-700 dark:text-gray-300 border border-amber-200/50 dark:border-cyan-400/20"
+                      }`}
+                    >
+                      <Icon className="w-4 h-4" />
+                      <span className="whitespace-nowrap">{category.name}</span>
+                    </button>
+                  );
+                })}
+              </div>
+              
+              {/* 其他分类按钮 - 移动端一行两个 */}
+              <div className="grid grid-cols-2 gap-2">
+                {categories.slice(1).map((category) => {
+                  const Icon = category.icon;
+                  return (
+                    <button
+                      key={category.id}
+                      onClick={() => setSelectedCategory(category.id)}
+                      className={`px-3.5 py-2 rounded-lg font-bold text-xs transition-all flex items-center justify-center gap-1.5 min-h-[40px] active:scale-95 ${
+                        selectedCategory === category.id
+                          ? "bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-cyan-500 dark:to-blue-500 text-white shadow-lg scale-105"
+                          : "bg-white/70 dark:bg-[#1a2332]/70 text-gray-700 dark:text-gray-300 border border-amber-200/50 dark:border-cyan-400/20"
+                      }`}
+                    >
+                      <Icon className="w-3.5 h-3.5" />
+                      <span className="whitespace-nowrap">{category.name}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            
+            {/* PC端：所有按钮一行显示 */}
+            <div className="hidden md:flex md:flex-wrap md:gap-3 md:justify-center">
+              {categories.map((category) => {
+                const Icon = category.icon;
+                return (
+                  <button
+                    key={category.id}
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={`px-6 py-3 rounded-xl font-bold text-sm transition-all flex items-center gap-2 active:scale-100 ${
+                      selectedCategory === category.id
+                        ? "bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-cyan-500 dark:to-blue-500 text-white shadow-lg scale-105"
+                        : "bg-white/70 dark:bg-[#1a2332]/70 text-gray-700 dark:text-gray-300 border border-amber-200/50 dark:border-cyan-400/20 hover:scale-105"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span className="whitespace-nowrap">{category.name}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          {/* 案例列表 */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* 案例列表 - 移动端进一步优化 */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
             {filteredProjects.map((project) => (
-              <div key={project.id} className="bg-white/80 dark:bg-[#1a2332]/80 rounded-2xl overflow-hidden border border-amber-200/50 dark:border-cyan-400/20 hover:scale-105 transition-all shadow-lg group">
-                <div className="relative h-48 overflow-hidden">
+              <div key={project.id} className="bg-white/80 dark:bg-[#1a2332]/80 rounded-lg md:rounded-2xl overflow-hidden border border-amber-200/50 dark:border-cyan-400/20 hover:scale-105 transition-all shadow-lg group cursor-pointer">
+                <div className="relative h-36 md:h-48 overflow-hidden">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -352,23 +405,23 @@ export default function PortfolioPage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     loading="lazy"
                   />
-                  <div className="absolute top-3 left-3 px-3 py-1 bg-white/90 dark:bg-[#1a2332]/90 backdrop-blur-sm rounded-lg">
-                    <span className="text-xs font-bold text-gray-900 dark:text-white">{project.year}</span>
+                  <div className="absolute top-2 left-2 md:top-3 md:left-3 px-2 py-0.5 md:px-3 md:py-1 bg-white/90 dark:bg-[#1a2332]/90 backdrop-blur-sm rounded-md md:rounded-lg">
+                    <span className="text-[10px] md:text-xs font-bold text-gray-900 dark:text-white">{project.year}</span>
                   </div>
                 </div>
-                <div className="p-5">
-                  <h3 className="text-lg font-black text-gray-900 dark:text-white mb-2 line-clamp-1 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
+                <div className="p-3.5 md:p-5">
+                  <h3 className="text-sm md:text-lg font-black text-gray-900 dark:text-white mb-1 md:mb-2 line-clamp-1 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-xs text-gray-500 dark:text-gray-500 mb-3">{project.client}</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
+                  <p className="text-[11px] md:text-xs text-gray-500 dark:text-gray-500 mb-1.5 md:mb-3 line-clamp-1">{project.client}</p>
+                  <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mb-2.5 md:mb-4 line-clamp-2 leading-relaxed">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 md:gap-2">
                     {project.tags.slice(0, 3).map((tag, idx) => (
                       <span
                         key={idx}
-                        className="px-2 py-1 bg-blue-50 dark:bg-cyan-900/20 text-blue-600 dark:text-cyan-400 text-xs font-semibold rounded"
+                        className="px-2 py-0.5 md:px-2 md:py-1 bg-blue-50 dark:bg-cyan-900/20 text-blue-600 dark:text-cyan-400 text-[10px] md:text-xs font-semibold rounded"
                       >
                         {tag}
                       </span>
@@ -381,27 +434,27 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* CTA区域 */}
-      <section className="py-16 px-4 bg-yellow-50 dark:bg-gradient-to-b dark:from-[#0f1419] dark:via-[#1a2332] dark:to-[#0f1419] relative">
+      {/* CTA区域 - 移动端优化 */}
+      <section className="py-12 md:py-16 px-4 bg-yellow-50 dark:bg-gradient-to-b dark:from-[#0f1419] dark:via-[#1a2332] dark:to-[#0f1419] relative">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(161,161,170,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(161,161,170,0.15)_1px,transparent_1px)] bg-[size:24px_24px] dark:opacity-20"></div>
         </div>
         <div className="container mx-auto max-w-4xl relative z-10">
-          <div className="bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-cyan-500 dark:to-blue-500 rounded-3xl p-12 text-center text-white shadow-2xl">
-            <Award className="w-16 h-16 mx-auto mb-6" />
-            <h2 className="text-3xl font-black mb-4">让我们一起创造下一个成功案例</h2>
-            <p className="text-lg opacity-90 mb-8">专业团队为您提供一对一咨询服务</p>
-            <div className="flex gap-4 justify-center">
+          <div className="bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-cyan-500 dark:to-blue-500 rounded-2xl md:rounded-3xl p-6 md:p-12 text-center text-white shadow-2xl">
+            <Award className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 md:mb-6" />
+            <h2 className="text-xl md:text-3xl font-black mb-3 md:mb-4 px-2 md:px-0">让我们一起创造下一个成功案例</h2>
+            <p className="text-sm md:text-lg opacity-90 mb-6 md:mb-8 px-2 md:px-0">专业团队为您提供一对一咨询服务</p>
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
               <a
                 href="/contact"
-                className="px-8 py-4 bg-white text-blue-600 font-bold rounded-xl hover:shadow-lg transition-all flex items-center gap-2"
+                className="px-6 py-3 md:px-8 md:py-4 bg-white text-blue-600 font-bold rounded-xl hover:shadow-lg transition-all flex items-center justify-center gap-2 min-h-[44px] md:min-h-0 active:scale-95 md:active:scale-100"
               >
                 立即咨询
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
               </a>
               <a
                 href="/services"
-                className="px-8 py-4 border-2 border-white text-white font-bold rounded-xl hover:bg-white/10 transition-all"
+                className="px-6 py-3 md:px-8 md:py-4 border-2 border-white text-white font-bold rounded-xl hover:bg-white/10 transition-all min-h-[44px] md:min-h-0 flex items-center justify-center active:scale-95 md:active:scale-100"
               >
                 查看服务
               </a>

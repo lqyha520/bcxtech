@@ -136,7 +136,7 @@ export default function NewsPage() {
       <Header />
       
       {/* Hero Section - 首屏设计 */}
-      <section className="pt-16 md:pt-20 h-screen flex flex-col overflow-hidden bg-yellow-50 dark:bg-gradient-to-b dark:from-[#0f1419] dark:via-[#1a2332] dark:to-[#0f1419] relative">
+      <section className="pt-16 md:pt-20 min-h-screen md:h-screen flex flex-col overflow-y-auto md:overflow-hidden bg-yellow-50 dark:bg-gradient-to-b dark:from-[#0f1419] dark:via-[#1a2332] dark:to-[#0f1419] relative">
         {/* 装饰背景 */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-blue-500/10 to-cyan-500/10 dark:from-cyan-500/10 dark:to-blue-500/10 rounded-full blur-3xl animate-pulse-ring"></div>
@@ -144,211 +144,264 @@ export default function NewsPage() {
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(161,161,170,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(161,161,170,0.15)_1px,transparent_1px)] bg-[size:24px_24px] dark:opacity-20"></div>
         </div>
         
-        <div className="container mx-auto px-4 py-1 relative z-10 w-full h-full flex flex-col justify-start overflow-hidden">
+        <div className="container mx-auto px-4 py-3 md:py-1 relative z-10 w-full flex-1 flex flex-col justify-center md:justify-start">
           <div className="max-w-7xl mx-auto w-full">
-            {/* 顶部：标题和描述 */}
-            <div className="text-center mb-1.5 md:mb-2 animate-fade-in">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-1 leading-tight tracking-tight animate-slide-up md:whitespace-nowrap">
-                洞察<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600 dark:from-cyan-400 dark:via-blue-400 dark:to-indigo-400">行业动态</span>
+            {/* 顶部：标题和描述 - 移动端优化字体大小，PC端保持原样 */}
+            <div className="text-center mb-3 md:mb-2 animate-fade-in">
+              <h1 className="text-xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-2 md:mb-1 leading-tight tracking-tight animate-slide-up">
+                <span className="md:whitespace-nowrap">
+                  洞察<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600 dark:from-cyan-400 dark:via-blue-400 dark:to-indigo-400">行业动态</span>
+                </span>
               </h1>
-              <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-0.5 font-semibold animate-slide-up" style={{ animationDelay: '0.1s' }}>
+              <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-1 md:mb-0.5 font-semibold animate-slide-up px-2 md:px-0" style={{ animationDelay: '0.1s' }}>
                 分享最新的公司动态、行业资讯和技术干货
               </p>
-              <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>
+              <p className="text-xs md:text-xs text-gray-500 dark:text-gray-400 max-w-2xl mx-auto animate-slide-up px-2 md:px-0" style={{ animationDelay: '0.2s' }}>
                 第一时间了解行业趋势和技术发展
               </p>
             </div>
-
+        
             {/* 中间：精选新闻预览 - 3个卡片 */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-2.5 mb-1.5 md:mb-2 max-w-6xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-2.5 mb-4 md:mb-2 max-w-6xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
               {featuredNews.map((item, index) => {
                 const CategoryIcon = categories.find(c => c.id === item.category)?.icon || Newspaper;
                 return (
                   <div key={item.id} className="group relative bg-white/90 dark:bg-[#1a2332]/90 backdrop-blur-sm rounded-lg border border-amber-200/50 dark:border-cyan-400/20 shadow-lg hover:scale-105 transition-all overflow-hidden">
-                    <div className="relative h-20 md:h-24 overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                      <img 
-                        src={item.image} 
-                        alt={item.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                      <div className="absolute top-1.5 right-1.5 z-20 px-2 py-0.5 bg-yellow-500 text-white text-[9px] md:text-[10px] font-bold rounded-full flex items-center gap-0.5">
-                        <Star className="w-2.5 h-2.5" />
+                    <div className="relative h-24 md:h-24 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                  <img 
+                    src={item.image} 
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                      <div className="absolute top-2 right-2 z-20 px-2 py-0.5 bg-yellow-500 text-white text-[10px] md:text-[10px] font-bold rounded-full flex items-center gap-0.5">
+                        <Star className="w-3 h-3" />
                         精选
                       </div>
-                      <div className="absolute bottom-1.5 left-1.5 z-20 px-1.5 py-0.5 bg-white/90 dark:bg-[#1a2332]/90 backdrop-blur-sm rounded flex items-center gap-1">
+                      <div className="absolute bottom-2 left-2 z-20 px-2 py-0.5 bg-white/90 dark:bg-[#1a2332]/90 backdrop-blur-sm rounded flex items-center gap-1">
                         <CategoryIcon className="w-3 h-3 text-blue-600 dark:text-cyan-400" />
-                        <span className="text-[9px] md:text-[10px] font-bold text-gray-900 dark:text-white">
-                          {categories.find(c => c.id === item.category)?.name}
-                        </span>
+                        <span className="text-[10px] md:text-[10px] font-bold text-gray-900 dark:text-white">
+                      {categories.find(c => c.id === item.category)?.name}
+                    </span>
                       </div>
                     </div>
-                    <div className="p-2 md:p-2.5">
-                      <h3 className="text-xs md:text-sm font-black text-gray-900 dark:text-white mb-1 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors leading-tight">
+                    <div className="p-2.5 md:p-2.5">
+                      <h3 className="text-sm md:text-sm font-black text-gray-900 dark:text-white mb-1.5 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors leading-tight">
                         {item.title}
                       </h3>
-                      <div className="flex items-center justify-between text-[9px] md:text-[10px] text-gray-500 dark:text-gray-400">
+                      <div className="flex items-center justify-between text-[10px] md:text-[10px] text-gray-500 dark:text-gray-400">
+                        <div className="flex items-center gap-2">
+                          <span className="flex items-center gap-0.5">
+                            <Calendar className="w-3 h-3" />
+                      {item.date}
+                    </span>
+                  </div>
                         <div className="flex items-center gap-1.5">
                           <span className="flex items-center gap-0.5">
-                            <Calendar className="w-2.5 h-2.5" />
-                            {item.date}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <span className="flex items-center gap-0.5">
-                            <Eye className="w-2.5 h-2.5" />
-                            {item.views}
-                          </span>
-                        </div>
-                      </div>
+                            <Eye className="w-3 h-3" />
+                        {item.views}
+                      </span>
                     </div>
                   </div>
+                </div>
+              </div>
                 );
               })}
             </div>
 
-            {/* 底部：文章分类快速入口 */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-2.5 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              {categories.map((category) => {
-                const Icon = category.icon;
-                const categoryNews = news.filter(item => item.category === category.id);
-                const count = category.id === "all" ? news.length : categoryNews.length;
-                const colors = [
-                  "from-blue-600 to-cyan-500",
-                  "from-purple-600 to-pink-500",
-                  "from-orange-600 to-red-500",
-                  "from-green-600 to-emerald-500",
-                  "from-indigo-600 to-purple-500",
-                ];
-                const color = colors[categories.indexOf(category) % colors.length];
-                
-                return (
-                  <button
-                    key={category.id}
-                    onClick={() => setSelectedCategory(category.id)}
-                    className={`group relative bg-white/90 dark:bg-[#1a2332]/90 backdrop-blur-sm rounded-lg border border-amber-200/50 dark:border-cyan-400/20 shadow-lg hover:scale-105 transition-all p-2 md:p-2.5 flex flex-col items-center justify-center text-center ${
-                      selectedCategory === category.id ? "ring-2 ring-blue-500 dark:ring-cyan-400" : ""
-                    }`}
-                  >
-                    <div className={`w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br ${color} flex items-center justify-center shadow-lg mb-1.5 group-hover:scale-110 transition-transform`}>
-                      <Icon className="w-4 h-4 md:w-5 md:h-5 text-white" />
-                    </div>
-                    <h3 className="text-[10px] md:text-xs font-black text-gray-900 dark:text-white mb-0.5 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
-                      {category.name}
-                    </h3>
-                    <p className="text-[9px] md:text-[10px] text-gray-500 dark:text-gray-400">
-                      {count} 篇
-                    </p>
-                    <div className={`absolute inset-0 bg-gradient-to-br ${color} rounded-lg blur-xl opacity-0 group-hover:opacity-20 transition-opacity -z-10`}></div>
-                  </button>
-                );
-              })}
+            {/* 底部：文章分类快速入口 - 移动端隐藏，PC端显示 */}
+            <div className="hidden md:block animate-fade-in mb-4 md:mb-0" style={{ animationDelay: '0.4s' }}>
+              {/* PC端：所有分类在一行显示 */}
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-2.5 md:gap-2.5">
+                {categories.map((category) => {
+                  const Icon = category.icon;
+                  const categoryNews = news.filter(item => item.category === category.id);
+                  const count = category.id === "all" ? news.length : categoryNews.length;
+                  const colors = [
+                    "from-blue-600 to-cyan-500",
+                    "from-purple-600 to-pink-500",
+                    "from-orange-600 to-red-500",
+                    "from-green-600 to-emerald-500",
+                    "from-indigo-600 to-purple-500",
+                  ];
+                  const color = colors[categories.indexOf(category) % colors.length];
+                  
+                  return (
+                    <button
+                      key={category.id}
+                      onClick={() => setSelectedCategory(category.id)}
+                      className={`group relative bg-white/90 dark:bg-[#1a2332]/90 backdrop-blur-sm rounded-lg border border-amber-200/50 dark:border-cyan-400/20 shadow-lg hover:scale-105 transition-all p-2.5 md:p-2.5 flex flex-col items-center justify-center text-center min-h-[90px] md:min-h-0 ${
+                        selectedCategory === category.id ? "ring-2 ring-blue-500 dark:ring-cyan-400" : ""
+                      }`}
+                    >
+                      <div className={`w-9 h-9 md:w-10 md:h-10 rounded-lg bg-gradient-to-br ${color} flex items-center justify-center shadow-lg mb-1.5 group-hover:scale-110 transition-transform`}>
+                        <Icon className="w-4.5 h-4.5 md:w-5 md:h-5 text-white" />
+                      </div>
+                      <h3 className="text-xs md:text-xs font-black text-gray-900 dark:text-white mb-0.5 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors leading-tight">
+                        {category.name}
+                      </h3>
+                      <p className="text-[10px] md:text-[10px] text-gray-500 dark:text-gray-400">
+                        {count} 篇
+                      </p>
+                      <div className={`absolute inset-0 bg-gradient-to-br ${color} rounded-lg blur-xl opacity-0 group-hover:opacity-20 transition-opacity -z-10`}></div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
         
-        {/* 滚动提示 */}
-        <ScrollHint />
+        {/* 滚动提示 - 移动端隐藏，PC端显示 */}
+        <div className="hidden md:block">
+          <ScrollHint />
+        </div>
       </section>
 
       {/* 新闻列表 - 瀑布流布局 */}
-      <section className="py-8 px-4 bg-yellow-50 dark:bg-gradient-to-b dark:from-[#0f1419] dark:via-[#1a2332] dark:to-[#0f1419] relative">
+      <section className="py-12 md:py-8 px-4 bg-yellow-50 dark:bg-gradient-to-b dark:from-[#0f1419] dark:via-[#1a2332] dark:to-[#0f1419] relative">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(161,161,170,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(161,161,170,0.15)_1px,transparent_1px)] bg-[size:24px_24px] dark:opacity-20"></div>
         </div>
         <div className="container mx-auto max-w-6xl relative z-10">
           {/* 分类筛选 */}
-          <div className="flex flex-wrap gap-3 justify-center mb-8">
+          <div className="mb-8 md:mb-8">
+            {/* 移动端：全部单独一行 */}
             {categories.map((category) => {
               const Icon = category.icon;
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`px-5 py-3 rounded-xl font-bold text-sm transition-all flex items-center gap-2 ${
-                    selectedCategory === category.id
-                      ? "bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-cyan-500 dark:to-blue-500 text-white shadow-lg scale-105"
-                      : "bg-white/70 dark:bg-[#1a2332]/70 text-gray-700 dark:text-gray-300 border border-amber-200/50 dark:border-cyan-400/20 hover:scale-105"
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  {category.name}
-                </button>
-              );
+              if (category.id === "all") {
+                return (
+                  <button
+                    key={category.id}
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={`w-full md:hidden px-4 py-2.5 rounded-lg font-bold text-xs transition-all flex items-center justify-center gap-1.5 min-h-[40px] active:scale-95 mb-2.5 ${
+                      selectedCategory === category.id
+                        ? "bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-cyan-500 dark:to-blue-500 text-white shadow-lg scale-105"
+                        : "bg-white/70 dark:bg-[#1a2332]/70 text-gray-700 dark:text-gray-300 border border-amber-200/50 dark:border-cyan-400/20"
+                    }`}
+                  >
+                    <Icon className="w-3.5 h-3.5" />
+                    <span className="leading-none whitespace-nowrap">{category.name}</span>
+                  </button>
+                );
+              }
+              return null;
             })}
+            
+            {/* 移动端：其他分类一行两个 */}
+            <div className="grid grid-cols-2 gap-2.5 md:hidden mb-0">
+              {categories.filter(c => c.id !== "all").map((category) => {
+                const Icon = category.icon;
+                return (
+                  <button
+                    key={category.id}
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={`px-4 py-2.5 rounded-lg font-bold text-xs transition-all flex items-center justify-center gap-1.5 min-h-[40px] active:scale-95 ${
+                      selectedCategory === category.id
+                        ? "bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-cyan-500 dark:to-blue-500 text-white shadow-lg scale-105"
+                        : "bg-white/70 dark:bg-[#1a2332]/70 text-gray-700 dark:text-gray-300 border border-amber-200/50 dark:border-cyan-400/20"
+                    }`}
+                  >
+                    <Icon className="w-3.5 h-3.5" />
+                    <span className="leading-none whitespace-nowrap">{category.name}</span>
+                  </button>
+                );
+              })}
+            </div>
+            
+            {/* PC端：横向排列 */}
+            <div className="hidden md:flex flex-wrap gap-3 justify-center">
+              {categories.map((category) => {
+                const Icon = category.icon;
+                return (
+                  <button
+                    key={category.id}
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={`px-5 py-3 rounded-xl font-bold text-sm transition-all flex items-center gap-2 ${
+                      selectedCategory === category.id
+                        ? "bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-cyan-500 dark:to-blue-500 text-white shadow-lg scale-105"
+                        : "bg-white/70 dark:bg-[#1a2332]/70 text-gray-700 dark:text-gray-300 border border-amber-200/50 dark:border-cyan-400/20 hover:scale-105"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span className="leading-none">{category.name}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {filteredNews.map((item, index) => {
               const CategoryIcon = categories.find(c => c.id === item.category)?.icon || Newspaper;
               return (
                 <div 
                   key={item.id} 
-                  className="bg-white/80 dark:bg-[#1a2332]/80 rounded-2xl overflow-hidden border border-amber-200/50 dark:border-cyan-400/20 hover:scale-105 transition-all shadow-lg group"
+                  className="bg-white/80 dark:bg-[#1a2332]/80 rounded-xl md:rounded-2xl overflow-hidden border border-amber-200/50 dark:border-cyan-400/20 hover:scale-105 transition-all shadow-lg group"
                 >
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative h-40 md:h-48 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
                     <img 
                       src={item.image} 
                       alt={item.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
-                    <div className="absolute top-3 left-3 z-20 px-3 py-1 bg-white/90 dark:bg-[#1a2332]/90 backdrop-blur-sm rounded-lg flex items-center gap-2">
-                      <CategoryIcon className="w-4 h-4 text-blue-600 dark:text-cyan-400" />
-                      <span className="text-xs font-bold text-gray-900 dark:text-white">
+                    <div className="absolute top-2 left-2 md:top-3 md:left-3 z-20 px-2 py-0.5 md:px-3 md:py-1 bg-white/90 dark:bg-[#1a2332]/90 backdrop-blur-sm rounded-lg flex items-center gap-1 md:gap-2">
+                      <CategoryIcon className="w-3 h-3 md:w-4 md:h-4 text-blue-600 dark:text-cyan-400" />
+                      <span className="text-[10px] md:text-xs font-bold text-gray-900 dark:text-white">
                         {categories.find(c => c.id === item.category)?.name}
                       </span>
                     </div>
                     {item.featured && (
-                      <div className="absolute top-3 right-3 z-20 px-3 py-1 bg-yellow-500 text-white text-xs font-bold rounded-full flex items-center gap-1">
-                        <Star className="w-3 h-3" />
+                      <div className="absolute top-2 right-2 md:top-3 md:right-3 z-20 px-2 py-0.5 md:px-3 md:py-1 bg-yellow-500 text-white text-[10px] md:text-xs font-bold rounded-full flex items-center gap-0.5 md:gap-1">
+                        <Star className="w-2.5 h-2.5 md:w-3 md:h-3" />
                         精选
                       </div>
                     )}
                   </div>
-                  <div className="p-5">
-                    <div className="flex items-center gap-2 mb-3 text-xs text-gray-500 dark:text-gray-500">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-3 h-3" />
+                  <div className="p-3 md:p-5">
+                    <div className="flex items-center gap-1.5 md:gap-2 mb-2 md:mb-3 text-[10px] md:text-xs text-gray-500 dark:text-gray-500">
+                      <span className="flex items-center gap-0.5 md:gap-1">
+                        <Calendar className="w-2.5 h-2.5 md:w-3 md:h-3" />
                         {item.date}
                       </span>
                       <span>•</span>
                       <span>{item.author}</span>
                     </div>
-                    <h3 className="text-lg font-black text-gray-900 dark:text-white mb-3 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
+                    <h3 className="text-base md:text-lg font-black text-gray-900 dark:text-white mb-2 md:mb-3 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors leading-tight">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-3 mb-4">
+                    <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 line-clamp-2 md:line-clamp-3 mb-3 md:mb-4 leading-relaxed">
                       {item.excerpt}
                     </p>
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4">
                       {item.tags.map((tag, idx) => (
                         <span
                           key={idx}
-                          className="px-2 py-1 bg-blue-50 dark:bg-cyan-900/20 text-blue-600 dark:text-cyan-400 text-xs font-semibold rounded-full border border-blue-200/30 dark:border-cyan-400/20"
+                          className="px-2 py-0.5 md:py-1 bg-blue-50 dark:bg-cyan-900/20 text-blue-600 dark:text-cyan-400 text-[10px] md:text-xs font-semibold rounded-full border border-blue-200/30 dark:border-cyan-400/20"
                         >
                           #{tag}
                         </span>
                       ))}
                     </div>
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
-                      <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-500">
-                        <span className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors cursor-pointer">
-                          <Eye className="w-4 h-4" />
+                    <div className="flex items-center justify-between pt-3 md:pt-4 border-t border-gray-200 dark:border-gray-700">
+                      <div className="flex items-center gap-3 md:gap-4 text-[10px] md:text-xs text-gray-500 dark:text-gray-500">
+                        <span className="flex items-center gap-0.5 md:gap-1 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors cursor-pointer">
+                          <Eye className="w-3 h-3 md:w-4 md:h-4" />
                           {item.views}
                         </span>
-                        <span className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors cursor-pointer">
-                          <ThumbsUp className="w-4 h-4" />
+                        <span className="flex items-center gap-0.5 md:gap-1 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors cursor-pointer">
+                          <ThumbsUp className="w-3 h-3 md:w-4 md:h-4" />
                           {item.likes}
                         </span>
-                        <span className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors cursor-pointer">
-                          <Share2 className="w-4 h-4" />
+                        <span className="flex items-center gap-0.5 md:gap-1 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors cursor-pointer">
+                          <Share2 className="w-3 h-3 md:w-4 md:h-4" />
                           分享
                         </span>
                       </div>
-                      <button className="text-blue-600 dark:text-cyan-400 font-bold text-xs hover:gap-2 flex items-center gap-1 transition-all">
+                      <button className="text-blue-600 dark:text-cyan-400 font-bold text-[10px] md:text-xs hover:gap-2 flex items-center gap-0.5 md:gap-1 transition-all">
                         查看
-                        <ArrowRight className="w-3 h-3" />
+                        <ArrowRight className="w-2.5 h-2.5 md:w-3 md:h-3" />
                       </button>
                     </div>
                   </div>
@@ -358,10 +411,10 @@ export default function NewsPage() {
           </div>
 
           {/* 加载更多 */}
-          <div className="text-center mt-12">
-            <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-cyan-500 dark:to-blue-500 text-white rounded-xl font-bold hover:shadow-lg transition-all inline-flex items-center gap-2">
+          <div className="text-center mt-8 md:mt-12">
+            <button className="px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-cyan-500 dark:to-blue-500 text-white rounded-lg md:rounded-xl font-bold text-sm md:text-base hover:shadow-lg transition-all inline-flex items-center gap-1.5 md:gap-2">
               加载更多
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4" />
             </button>
           </div>
         </div>
